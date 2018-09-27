@@ -1,10 +1,6 @@
 module.exports = function check(str, bracketsConfig) {
-    let config = [['(', ')'], ['|', '|']];
     let array = str.split('');
-
-
     let num = [];
-    let result = [];
     let i = 0;
 
     for (i = 0; i < array.length; i++){
@@ -45,5 +41,4 @@ module.exports = function check(str, bracketsConfig) {
     } else {
         return false;
     }
-
 }
