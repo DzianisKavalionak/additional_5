@@ -24,10 +24,13 @@ module.exports = function check(str, bracketsConfig) {
     for (i = 0; i < num.length; i) {
         if (num[i] === 1 && num[i + 1] === 2 ||
             num[i] === 3 && num[i + 1] === 4 ||
-            num[i] === 5 && num[i + 1] === 6) {
+            num[i] === 5 && num[i + 1] === 6 ||
+            num[i] === 7 && num[i + 1] === 7 ||
+            num[i] === 8 && num[i + 1] === 8)            {
             num.splice(i, 2);
             i = 0;
-        } else if ( num[i] === 7 && num[num.length - i - 1] === 7){
+        } else if ( num[i] === 7 && num[num.length - i - 1] === 7 ||
+                    num[i] === 8 && num[num.length - i - 1] === 8 ){
             num.splice(num.length - i - 1, 1);
             num.splice(i, 1);
             i = 0;
