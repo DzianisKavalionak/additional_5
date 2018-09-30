@@ -1,45 +1,44 @@
 module.exports = function check(str, bracketsConfig) {
     let array = str.split('');
-    let num = [];
     let i = 0;
-
-    for (i = 0; i < array.length; i++){
-        if(array[i] === '('){
-            num.push(1);
-        } else if(array[i] === ')') {
-            num.push(2);
-        } else if(array[i] === '[') {
-            num.push(3);
-        } else if(array[i] === ']') {
-            num.push(4);
-        } else if(array[i] === '{') {
-            num.push(5);
-        } else if(array[i] === '}') {
-            num.push(6);
-        } else if(array[i] === '|') {
-            num.push(7);
+    for (i = 0; i < array.length; i++) {
+        if (array[i] === '(') {
+            array.splice(i, 1, 1);
+        } else if (array[i] === ')') {
+            array.splice(i, 1, 2);
+        } else if (array[i] === '[') {
+            array.splice(i, 1, 3);
+        } else if (array[i] === ']') {
+            array.splice(i, 1, 4);
+        } else if (array[i] === '{') {
+            array.splice(i, 1, 5);
+        } else if (array[i] === '}') {
+            array.splice(i, 1, 6);
+        } else if (array[i] === '|') {
+            array.splice(i, 1, 7);
         }
     }
 
-    for (i = 0; i < num.length; i) {
-        if (num[i] === 1 && num[i + 1] === 2 ||
-            num[i] === 3 && num[i + 1] === 4 ||
-            num[i] === 5 && num[i + 1] === 6 ||
-            num[i] === 7 && num[i + 1] === 7 ||
-            num[i] === 8 && num[i + 1] === 8)            {
-            num.splice(i, 2);
-            i = 0;
-        } else if ( num[i] === 7 && num[num.length - i - 1] === 7 ||
-                    num[i] === 8 && num[num.length - i - 1] === 8 ){
-            num.splice(num.length - i - 1, 1);
-            num.splice(i, 1);
-            i = 0;
-        } else {
-            i++;
+    function sort() {
+        for (i = 0; i < array.length; i++) {
+            if (array[i] == 1 && array[i + 1] == 2 ||
+                array[i] == 3 && array[i + 1] == 4 ||
+                array[i] == 5 && array[i + 1] == 6 ||
+                array[i] == 7 && array[i + 1] == 7 ||
+                array[i] == 8 && array[i + 1] == 8) {
+                array.splice(i, 2);
+                sort(i = 0);
+            } else if (array[0] == 7 && array[array.length - 1] == 7 ||
+                array[0] == 8 && array[array.length - 1] == 8) {
+                array.splice(array.length - i - 1, 1);
+                array.splice(i, 1);
+                sort(i = 0);
+            }
         }
     }
 
-    if (num[0] === undefined) {
+    sort();
+    if (array[0] === undefined) {
         return true;
     } else {
         return false;
